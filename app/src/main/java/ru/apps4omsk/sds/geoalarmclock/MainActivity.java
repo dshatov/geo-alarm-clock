@@ -17,9 +17,7 @@ public class MainActivity extends Activity {
     private static final int TWO_MINUTES = 1000 * 60 * 2;
 
     LocationManager locationManager;
-    String locationProvider = LocationManager.NETWORK
-
-    _PROVIDER;
+    String locationProvider = LocationManager.NETWORK_PROVIDER;
     LocationListener locationListener;
 
     TextView coordTextView;
@@ -70,15 +68,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Entry point
+        Log.d("TEST_GEO_LOCATION", "All right");
         coordTextView = (TextView) findViewById(R.id.CoordTextView);
             try {
                 locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
                 locationListener = new LocationListener() {
                     @Override
                     public void onLocationChanged(Location location) {
-                        Log.d("TEST_GEO_LOCATION", location.getLatitude() + " and " + location.getLongitude());
-                        coordTextView.setText(location.getLatitude() + " and " + location.getLongitude());
                         Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+                        Log.d("TEST_GEO_LOCATION", lastKnownLocation.getLatitude() + " and " + lastKnownLocation.getLongitude());
+                        coordTextView.setText(lastKnownLocation.getLatitude() + " and " + lastKnownLocation.getLongitude());
                     }
 
                     @Override
