@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 
 public class MainActivity extends Activity {
@@ -12,6 +14,33 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String[] routes = {
+                "Автобус 1",
+                "Автобус 29",
+                "Автобус 33",
+                "Автобус 49",
+                "Автобус 51",
+                "Автобус 190",
+                "Автобус 10",
+                "Автобус 290",
+                "Автобус 330",
+                "Автобус 490",
+                "Автобус 510",
+                "Автобус 1900",
+                "Автобус 100",
+                "Автобус 2900",
+                "Автобус 3300",
+                "Автобус 4900",
+                "Автобус 5100",
+                "Автобус 19000"
+        };
+
+        ListView listRoutes = (ListView) findViewById(R.id.mainscreen_lv);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, routes);
+
+        listRoutes.setAdapter(adapter);
     }
 
 

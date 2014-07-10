@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">Geo Alarm Clock</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="debug_text_view">Hello world!</string>
+    <string name="routes">Маршруты</string>
     <string name="action_settings">Settings</string>
 
 </resources>
