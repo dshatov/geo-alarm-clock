@@ -2,13 +2,17 @@ package ru.apps4omsk.sds.geoalarmclock;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
 public class MainActivity extends Activity {
+    final String LOG_TAG_SDS = "SDSLOG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,13 @@ public class MainActivity extends Activity {
                 android.R.layout.simple_list_item_1, routes);
 
         listRoutes.setAdapter(adapter);
+        listRoutes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Log.d(LOG_TAG_SDS, "itemClick: position = " + position + ", id = "
+                        + id);
+            }
+        });
     }
 
 
