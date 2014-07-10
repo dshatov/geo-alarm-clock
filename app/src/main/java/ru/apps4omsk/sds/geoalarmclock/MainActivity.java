@@ -4,12 +4,19 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import android.content.Intent;
 
 public class MainActivity extends Activity {
 
+
+    public void onClick(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, bus_stop.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
