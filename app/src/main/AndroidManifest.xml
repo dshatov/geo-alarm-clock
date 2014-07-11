@@ -9,7 +9,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,12 +19,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".bus_stop"
             android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name=".TrackActivity"
-            android:label="@string/title_activity_track" >
         </activity>
     </application>
 

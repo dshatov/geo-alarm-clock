@@ -24,7 +24,18 @@ public class MainActivity extends Activity {
 
     public long bus_id;
 
-
+    public final String[] routes = {
+            "Химик",
+            "Кристалл",
+            "Амур",
+            "Первомайский рынок",
+            "Марс",
+            "Венера",
+            "Юпитер",
+            "Луна",
+            "Плутон",
+            "Земля",
+    };
 
     public void doGpsTask(){
         //update geo
@@ -35,6 +46,8 @@ public class MainActivity extends Activity {
         //update UI
         Log.d("SDSLOG", " called UI");
     }
+
+    final String LOG_TAG_SDS = "SDSLOG";
 
     public void onClick(View v)
     {
@@ -59,28 +72,7 @@ public class MainActivity extends Activity {
         }, 1, 1 * 1000);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //startService(new Intent(this, TimeService.class));
-        //Log.d("SDSLOG", " called startService()");
-        String[] routes = {
-                "Автобус 1",
-                "Автобус 29",
-                "Автобус 33",
-                "Автобус 49",
-                "Автобус 51",
-                "Автобус 190",
-                "Автобус 10",
-                "Автобус 290",
-                "Автобус 330",
-                "Автобус 490",
-                "Автобус 510",
-                "Автобус 1900",
-                "Автобус 100",
-                "Автобус 2900",
-                "Автобус 3300",
-                "Автобус 4900",
-                "Автобус 5100",
-                "Автобус 19000"
-        };
+
 
         ListView listRoutes = (ListView) findViewById(R.id.routes_lv);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -93,12 +85,12 @@ public class MainActivity extends Activity {
                Log.d("SDSLOG", "itemClick: position = " + position + ", id = "
                        + id);
                 bus_id = id;
-                askForRadius();
+                askForRadius(position);
             }
         });
     }
 
-    private void askForRadius() {
+    private void askForRadius(final int posit) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Когда вас разбудить?");
         alertDialog.setMessage("За сколько остановок вас разбудить:");
@@ -114,6 +106,12 @@ public class MainActivity extends Activity {
                 int alarmRadius = alarmRadiusInput.getValue();
                 //startTracking(0, bus_id, alarmRadius);
                 Log.d("SDSLOG", alarmRadius + "");
+                Intent intent = new Intent(MainActivity.this, bus_stop.class);
+
+                final int position = posit;
+                intent.putExtra("stop_name", routes[position]);
+                intent.putExtra("stop_number", position);
+                startActivity(intent);
             }
 
         });
