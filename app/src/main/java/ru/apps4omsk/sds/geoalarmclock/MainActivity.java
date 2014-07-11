@@ -4,12 +4,19 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import android.content.Intent;
 
 public class MainActivity extends Activity {
 
+
+    public void onClick(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, bus_stop.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +43,7 @@ public class MainActivity extends Activity {
                 "Автобус 19000"
         };
 
-        ListView listRoutes = (ListView) findViewById(R.id.mainscreen_lv);
+        ListView listRoutes = (ListView) findViewById(R.id.routes_lv);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, routes);
 
