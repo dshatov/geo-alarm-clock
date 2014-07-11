@@ -2,16 +2,18 @@ package ru.apps4omsk.sds.geoalarmclock;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.content.Intent;
 
 public class MainActivity extends Activity {
 
-
+    final String LOG_TAG_SDS = "SDSLOG";
     public void onClick(View v)
     {
         Intent intent = new Intent(MainActivity.this, bus_stop.class);
@@ -22,25 +24,17 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] routes = {
-                "Автобус 1",
-                "Автобус 29",
-                "Автобус 33",
-                "Автобус 49",
-                "Автобус 51",
-                "Автобус 190",
-                "Автобус 10",
-                "Автобус 290",
-                "Автобус 330",
-                "Автобус 490",
-                "Автобус 510",
-                "Автобус 1900",
-                "Автобус 100",
-                "Автобус 2900",
-                "Автобус 3300",
-                "Автобус 4900",
-                "Автобус 5100",
-                "Автобус 19000"
+        final String[] routes = {
+                "Химик",
+                "Кристалл",
+                "Амур",
+                "Первомайский рынок",
+                "Марс",
+                "Венера",
+                "Юпитер",
+                "Луна",
+                "Плутон",
+                "23456",
         };
 
         ListView listRoutes = (ListView) findViewById(R.id.routes_lv);
@@ -48,6 +42,22 @@ public class MainActivity extends Activity {
                 android.R.layout.simple_list_item_1, routes);
 
         listRoutes.setAdapter(adapter);
+        listRoutes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Log.d(LOG_TAG_SDS, "itemClick: position = " + position + ", id = "
+                        + id);
+
+
+
+                Intent intent = new Intent(MainActivity.this, bus_stop.class);
+
+                intent.putExtra("stop_name", routes[position]);
+                intent.putExtra("stop_number", position);
+                startActivity(intent);
+
+            }
+        });
     }
 
 

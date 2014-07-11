@@ -3,7 +3,8 @@
 
     <string name="app_name">Geo Alarm Clock</string>
     <string name="debug_text_view">Hello world!</string>
-    <string name="routes">Выберите маршрут</string>
     <string name="bus_stations">Выберите остановку</string>
+    <string name="station">Остановок до </string>
+    <string name="left">Осталось</string>
     <string name="action_settings">Settings</string>
 </resources>
